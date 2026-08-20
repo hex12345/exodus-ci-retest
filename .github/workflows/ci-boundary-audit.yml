@@ -20,4 +20,8 @@ jobs:
           echo "actor=${{ github.actor }}"
           echo "head_repo=${{ github.event.pull_request.head.repo.full_name || 'n/a' }}"
           echo "base_repo=${{ github.repository }}"
-          echo "No credentials are read or exported by this fixture."
+          if [ -n "${{ secrets.TEST_SENTINEL }}" ]; then
+            echo "sentinel=present"
+          else
+            echo "sentinel=absent"
+          fi
