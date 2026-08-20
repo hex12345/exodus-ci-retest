@@ -4,6 +4,6 @@
   "private": true,
   "description": "Harmless CI and provenance retest fixture",
   "scripts": {
-    "build": "node -e \"require('fs').writeFileSync('artifact.txt', 'local test artifact\\n'); require('fs').writeFileSync('pr-controlled-marker.txt', 'PR-controlled build script executed\\n')\""
+    "build": "node -e \"require('fs').writeFileSync('artifact.txt', 'local test artifact\\n')\""
   }
 }
