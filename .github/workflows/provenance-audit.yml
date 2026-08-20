@@ -1,0 +1,26 @@
+name: Local provenance audit
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build harmless artifact
+        run: |
+          npm run build
+          sha256sum artifact.txt > artifact.sha256
+      - name: Upload local evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: local-provenance-fixture
+          path: |
+            artifact.txt
+            artifact.sha256
